@@ -23,14 +23,14 @@ const router = new VueRouter({
 					component: LogTime
 				}
 			]
-		}
+		},
+		{ path: '*', redirect: '/home'}
 	] 
 })
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  mode: 'history',
   router: router,
   template: '<App/>',
   components: { App }
