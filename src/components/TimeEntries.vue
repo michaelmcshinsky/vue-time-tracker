@@ -2,10 +2,16 @@
   <div>
     <button
       v-if="$route.path !== '/time-entries/log-time'"
-      v-bind:href="'/time-entries/log-time'"
+      v-bind:to="'/time-entries/log-time'"
       class="btn btn-primary">
       Log Time
     </button>
+
+	<router-link 
+		v-if="$route.path !== '/time-entries/log-time'"
+		v-bind:to="'/time-entries/log-time'">
+	  	<a class="btn btn-primary">Log Time</a>
+	</router-link>
 
     <div v-if="$route.path === '/time-entries/log-time'">
       <h3>Log Time</h3>     
@@ -51,7 +57,7 @@
             <div class="col-sm-1">
               <button 
                 class="btn btn-xs btn-danger delete-button"
-                @click="deleteTimeEntry(timeEntry)">
+                v-on:click="deleteTimeEntry(timeEntry)">
                 X
               </button>
             </div>
@@ -84,7 +90,7 @@
 
 		},
 	    methods: {
-	      deleteTimeEntry (timeEntry) {
+	      deleteTimeEntry: function(timeEntry) {
 	        // Get the index of the clicked time entry and splice it out
 	        let index = this.timeEntries.indexOf(timeEntry)
 	        if (window.confirm('Are you sure you want to delete this time entry?')) {

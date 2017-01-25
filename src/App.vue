@@ -9,8 +9,6 @@
         <ul class="nav navbar-nav">
           <router-link tag="li" to="/"><a>Home</a></router-link>
           <router-link tag="li" to="/time-entries"><a>Time Entries</a></router-link>
-          <router-link tag="li" to="/foo"><a>Go to Foo</a></router-link>
-          <router-link tag="li" to="/bar"><a>Go to Bar</a></router-link>
         </ul>
       </div>
     </nav>
