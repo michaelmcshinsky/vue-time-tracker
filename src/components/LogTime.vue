@@ -32,7 +32,10 @@
       </div>        
     </div>    
     <button class="btn btn-primary" v-on:click="save()">Save</button>
-    <button v-bind:href="'/time-entries'" class="btn btn-danger">Cancel</button>    
+    <router-link 
+        v-bind:to="'/time-entries/'">
+          <a class="btn btn-primary">Cancel</a>
+      </router-link>  
     <hr>
   </div>
 
