@@ -31,7 +31,7 @@
         />
       </div>        
     </div>    
-    <button class="btn btn-primary" @click="save()">Save</button>
+    <button class="btn btn-primary" v-on:click="save()">Save</button>
     <button v-bind:href="'/time-entries'" class="btn btn-danger">Cancel</button>    
     <hr>
   </div>
@@ -53,7 +53,7 @@
       }
     },
     methods: {
-      save () {
+      save: function() {
         let timeEntry = this.timeEntry
         this.$emit('timeUpdate', timeEntry)
         this.timeEntry = {}
