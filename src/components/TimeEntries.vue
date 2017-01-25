@@ -1,18 +1,12 @@
 <template>
   <div>
-    <button
+    <router-link
       v-if="$route.path !== '/time-entries/log-time'"
-      v-bind:to="'/time-entries/log-time'"
+      to="time-entries/log-time"
       class="btn btn-primary">
       Log Time
-    </button>
-
-	<router-link 
-		v-if="$route.path !== '/time-entries/log-time'"
-		v-bind:to="'/time-entries/log-time'">
-	  	<a class="btn btn-primary">Log Time</a>
-	</router-link>
-
+    </router-link>
+ 
     <div v-if="$route.path === '/time-entries/log-time'">
       <h3>Log Time</h3>     
     </div>
@@ -22,13 +16,12 @@
     <router-view></router-view>
 
     <div class="time-entries">
-      <p v-if="!timeEntries.length"><strong>No time entries yet</strong></p>
+      <p v-if="!timeEntriesResult.length"><strong>No time entries yet</strong></p>
 
       <div class="list-group">
 
-        <a class="list-group-item" v-for="timeEntry in timeEntries">
+        <a class="list-group-item" v-for="timeEntry in timeEntriesResult">
           <div class="row">
-
             <div class="col-sm-2 user-details">
               <img :src="timeEntry.user.image" class="avatar img-circle img-responsive" />
               <p class="text-center">
@@ -57,61 +50,41 @@
             <div class="col-sm-1">
               <button 
                 class="btn btn-xs btn-danger delete-button"
-                v-on:click="deleteTimeEntry(timeEntry)">
+                @click="deleteTimeEntry(timeEntry)">
                 X
               </button>
             </div>
-
           </div>        
         </a>
-
       </div>
     </div>    
   </div>
 </template>
 
-<script type="text/javascript">
-	export default {
-		data() {
-			let existingEntry = {
-		        user: {
-		          firstName: 'Ryan',
-		          lastName: 'Chenkie',
-		          email: 'ryanchenkie@gmail.com',
-		          image: 'https://1.gravatar.com/avatar/7f4ec37467f2f7db6fffc7b4d2cc8dc2?s=250'
-		        },
-				comment: 'First time entry',
-				totalTime: 1.5,
-				data: '2016-04-08'		        
-			}
-			return {
-				timeEntries: [existingEntry]
-			}			
+<script>
+  import store from '../store';
 
-		},
-	    methods: {
-	      deleteTimeEntry: function(timeEntry) {
-	        // Get the index of the clicked time entry and splice it out
-	        let index = this.timeEntries.indexOf(timeEntry)
-	        if (window.confirm('Are you sure you want to delete this time entry?')) {
-	          this.timeEntries.splice(index, 1)
-	          this.$emit('deleteTime', timeEntry)
-	        }
-	      }
-	    },
-	    events: {
-	      timeUpdate (timeEntry) {
-	        this.timeEntries.push(timeEntry)
-	        return true
-	      }
-	    }
-	}
+  export default {
+    methods: {
+      deleteTimeEntry (timeEntry) {
+        if (window.confirm('Are you sure you want to delete this time entry?')) {
+          store.commit('deleteTime', timeEntry);
+        }
+      }
+    },
+    computed: {
+      timeEntriesResult(){      
+        return store.state.timeEntries;
+      }
+    }
+  }
 </script>
 
 <style>
   .avatar {
     height: 75px;
     margin: 0 auto;
+    margin-top: 10px;
     margin-bottom: 10px;
   }
   .user-details {

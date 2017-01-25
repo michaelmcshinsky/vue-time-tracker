@@ -39,6 +39,8 @@
 </template>
 
 <script>
+  import store from '../store'
+
   export default {
     data () {
       return {
@@ -53,10 +55,21 @@
       }
     },
     methods: {
-      save: function() {
+      save () {
         let timeEntry = this.timeEntry
-        this.$emit('timeUpdate', timeEntry)
-        this.timeEntry = {}
+
+        if (Object.keys(timeEntry).length > 1) {
+          store.commit('timeUpdate', timeEntry);
+        }
+
+        this.timeEntry = {
+          user: {
+            firstName: 'Eskie Sirius',
+            lastName: 'Maquilang',
+            email: 'eskiesiriusmaquilang@gmail.com',
+            image: 'https://s.gravatar.com/avatar/f8ffe384215d64694c4dfb263737ea39?s=80'
+          }
+        };
       }
     }
   }

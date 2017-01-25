@@ -14,7 +14,7 @@
     </nav>
     <div class="container">
       <div class="col-sm-3">
-
+        <sidebar :time="totalTime"></sidebar>
       </div>
       <div class="col-sm-9">
         <router-view></router-view>
@@ -22,6 +22,20 @@
     </div>
   </div>
 </template>
+
+<script>
+import Sidebar from './components/Sidebar'
+import store from './store';
+
+export default {
+  components: {'sidebar': Sidebar},
+  computed: {
+    totalTime() {
+      return store.state.totalTime;
+    }
+  }
+};
+</script>
 
 <style>
 #app {
