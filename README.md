@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+> Updated library versions for Scotch's Full Stack Vue.js tutorial from Vue, Router, and Vuex 1.0 to 2.0.
+
+> https://scotch.io/tutorials/build-a-single-page-time-tracking-app-with-vue-js-part-ii
+
 ## Build Setup
 
 ``` bash
