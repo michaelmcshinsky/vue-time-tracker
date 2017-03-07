@@ -10,7 +10,7 @@ var store = new Vuex.Store({
   },
   mutations: {
     timeUpdate(state,timeEntry) {
-      state.totalTime += timeEntry.totalTime;
+      state.totalTime += Number(timeEntry.totalTime);
       state.timeEntries.push(timeEntry);
     },
     deleteTime(state,timeEntry) {
