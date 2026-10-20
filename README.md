@@ -1,3 +1,7 @@
+> **Archived**
+>
+> This repository is no longer maintained. It is kept for historical reference.
+
 # vue-time-tracker
 
 > A Vue.js project
